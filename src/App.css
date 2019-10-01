@@ -1,3 +1,48 @@
+html { 
+  background: url(bg3.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .App {
+  color: azure;
   padding: 20px;
+}
+
+.bar {
+  width: 100%;
+  position: fixed;
+  padding: 20px;
+  left: 0;
+  top: 0;
+  color: white;
+  background-color: darkblue;
+}
+
+.logo {
+  float: left;
+  background-color: darkblue;
+}
+
+.navigation {
+  float: right;
+  margin-right: 50px;
+}
+
+.cover {
+  margin: 100px;
+}
+
+.footer {
+  /* height: 50px; */
+  width: 100%;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  color: white;
+  background-color: darkblue;
 }
