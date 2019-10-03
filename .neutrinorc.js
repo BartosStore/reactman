@@ -5,7 +5,8 @@ module.exports = {
       '@neutrinojs/react',
       {
         html: {
-          title: 'reactman'
+          title: 'reactman',
+          favicon: 'src/static/favicon.ico'
         }
       }
     ],
