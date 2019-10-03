@@ -7,26 +7,35 @@ export default class App extends Component {
     developer: 'Miroslav Bartoš',
     job: 'Software Developer',
     githubLogin: '',
-    githubUrl: '',
+    githubUrl: 'https://api.github.com/users/BartosStore',
     githubReposUrl: '',
-    githubPublicRepos: '',
+    githubRepos: [{
+      name: '',
+    }],
+    output: '',
     footer: 'This is page footer.',
   };
 
   componentDidMount() {
-    fetch('https://api.github.com/users/BartosStore')
+    fetch(this.state.githubUrl)
       .then(result => result.json()).then((data) => {
-        // console.log(data);
         this.setState({
           githubLogin: data.login,
           githubUrl: data.url,
           githubReposUrl: data.repos_url,
-          githubPublicRepos: data.public_repos,
         });
+        fetch(this.state.githubReposUrl)
+          .then(result => result.json()).then((repos) => {
+            this.setState({
+              githubRepos: repos,
+              output: repos[0].name,
+            });
+          });
       });
   }
 
   render() {
+    const githubRepoComponent = <div>First repository: {this.state.githubRepos[0].name}</div>;
     return (
       <div className="App">
         <div className="bar">
@@ -37,11 +46,13 @@ export default class App extends Component {
           <h1>Welcome to {this.state.name} application</h1>
           <div>{this.state.developer}</div>
           <div>{this.state.job}</div>
+          <div>This is React library playground.</div>
           <div>{this.state.githubLogin}</div>
           <div>{this.state.githubUrl}</div>
           <div>{this.state.githubReposUrl}</div>
-          <div>Number of public repos: {this.state.githubPublicRepos}</div>
-          <div>This is React library playground.</div>
+          <div>{this.state.githubRepos.length}</div>
+          {githubRepoComponent}
+          <div>{this.state.output}</div>
         </div>
         <div className="footer">{this.state.footer}</div>
       </div>
