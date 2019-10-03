@@ -57,7 +57,7 @@ export default class App extends Component {
           <div>Craftsmanship: {this.state.job}</div>
           <h2>{this.state.githubLogin}</h2>
           <div><a href={this.state.githubAccount}>GitHub account</a></div>
-          <h2>Public Github repositories</h2>
+          <h2>Public Github repositories [{this.state.githubRepos.length}]</h2>
           {githubRepoComponents}
         </div>
         <div className="footer">{this.state.footer}</div>
