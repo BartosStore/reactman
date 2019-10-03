@@ -39,7 +39,7 @@ export default class App extends Component {
   render() {
     const githubRepoComponents = [];
     this.state.githubRepos.forEach((repo, index) => {
-      if (repo.name !== null) {
+      if (repo.name !== "") {
         /* eslint-disable */
         githubRepoComponents.push(<GithubRepository name={repo.name} description={repo.description} language={repo.language} key={index} />);
         /* eslint-enable */
