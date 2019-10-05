@@ -4,7 +4,8 @@ import './App.css';
 
 export default class App extends Component {
   state = {
-    name: 'Reactman',
+    app: 'Reactman',
+    page: 'Profile',
     developer: 'Miroslav Bartoš',
     job: 'Software Developer',
     githubLogin: '',
@@ -47,12 +48,9 @@ export default class App extends Component {
     });
     return (
       <div className="App">
-        <div className="bar">
-          <div className="logo">MBartos</div>
-          <div className="navigation">Home Articles Contact</div>
-        </div>
         <div className="cover">
-          <h1>Welcome to {this.state.name} application</h1>
+          <h1>Welcome to {this.state.page} page</h1>
+          <h4>...of {this.state.app} application</h4>
           <div>Developer: {this.state.developer}</div>
           <div>Craftsmanship: {this.state.job}</div>
           <h2>{this.state.githubLogin}</h2>
