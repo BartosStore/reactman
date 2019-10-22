@@ -18,6 +18,7 @@ export default class Profile extends Component {
       language: '',
     }],
     footer: 'This is page footer.',
+    url: 'wss://flavio-websockets-server-example.glitch.me',
   };
 
   componentDidMount() {
@@ -35,6 +36,18 @@ export default class Profile extends Component {
             });
           });
       });
+
+    // const url = 'wss://flavio-websockets-server-example.glitch.me'
+    const connection = new WebSocket(this.state.url);
+    connection.onopen = () => {
+      connection.send('hey');
+    };
+    connection.onerror = (error) => {
+      console.log(`WebSocket error: ${error}`);
+    };
+    connection.onmessage = (e) => {
+      console.log(e.data);
+    };
   }
 
   render() {
