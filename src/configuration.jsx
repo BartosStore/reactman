@@ -1,8 +1,9 @@
+import { useState, useEffect } from 'react';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { useState, useEffect } from 'react';
+import 'firebase/database';
 import * as firebase from 'firebase/app';
-import firebaseApp from './firebase';
+import { firebaseApp } from './firebase';
 import './App.css';
 
 export default function Configuration() {
@@ -20,6 +21,9 @@ export default function Configuration() {
     firebase.auth(firebaseApp).signInWithEmailAndPassword(email, pass).then(() => {
       console.log('signInWithEmailAndPassword called!');
       setAuthenticated(true);
+      firebase.database().ref('film').on('value', (snap) => {
+        console.log(snap.val());
+      });
     }).catch(error => console.log(`ERROR: ${error.code} ${error.message}`));
     /* eslint-enable */
   });
