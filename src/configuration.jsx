@@ -2,29 +2,25 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import * as firebase from 'firebase/app';
+import firebaseApp from './firebase';
 import './App.css';
 
 export default function Configuration() {
   const [appName] = useState('Reactman');
   const [page] = useState('Configuration');
   const [footer] = useState('This is page footer.');
-  const [email] = useState('e-miro@atlas.cz');
-  const [pass] = useState('Password1');
+  const [email, setEmail] = useState('e-miro@atlas.cz');
+  const [pass, setPass] = useState('Password1');
+  const [authenticated, setAuthenticated] = useState(false);
+
+  const onSubmit = () => {};
 
   useEffect(() => {
-    const firebaseConfig = {
-      apiKey: 'AIzaSyC5lWGLC9LHPKKPeLcn4c1YA5aNDooXYjc',
-      authDomain: 'reactman-67cfc.firebaseapp.com',
-      databaseURL: 'https://reactman-67cfc.firebaseio.com',
-      projectId: 'reactman-67cfc',
-      storageBucket: 'reactman-67cfc.appspot.com',
-      messagingSenderId: '760238218858',
-      appId: '1:760238218858:web:7ca952317653ade8413413',
-      measurementId: 'G-9GXYQXXW16',
-    };
-    const app = firebase.initializeApp(firebaseConfig);
     /* eslint-disable */
-    firebase.auth(app).signInWithEmailAndPassword(email, pass).then(console.log('signInWithEmailAndPassword called!')).catch(error => console.log(`${error.code} ${error.message}`));
+    firebase.auth(firebaseApp).signInWithEmailAndPassword(email, pass).then(() => {
+      console.log('signInWithEmailAndPassword called!');
+      setAuthenticated(true);
+    }).catch(error => console.log(`ERROR: ${error.code} ${error.message}`));
     /* eslint-enable */
   });
 
@@ -33,6 +29,12 @@ export default function Configuration() {
       <div className="cover">
         <h1>Welcome to { page } page</h1>
         <h4>...of {appName} application</h4>
+        {authenticated.toString()}
+        <form onSubmit={onSubmit}>
+          <input value={email} onChange={setEmail} /><br />
+          <input value={pass} onChange={setPass} /><br />
+          <input type="submit" value="Login" />
+        </form>
       </div>
       <div className="footer">{footer}</div>
     </div>

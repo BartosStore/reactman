@@ -42,11 +42,11 @@ export default class Profile extends Component {
     connection.onopen = () => {
       connection.send('hey');
     };
-    connection.onerror = (error) => {
-      console.log(`WebSocket error: ${error}`);
+    connection.onerror = () => {
+      // console.log(`WebSocket error: ${error}`);
     };
-    connection.onmessage = (e) => {
-      console.log(e.data);
+    connection.onmessage = () => {
+      // console.log(e.data);
     };
   }
 
