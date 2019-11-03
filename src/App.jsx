@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import Profile from './Profile';
-import Configuration from './configuration';
+import Configuration from './configuration/configuration';
 import './App.css';
 
 export default function App() {
